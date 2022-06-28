@@ -121,7 +121,7 @@ const Login = () => {
             payload: 'Login Successfully'
         });
 
-        navigate("../success", { replace: true });
+        navigate("Home/", { replace: true });
 
         enqueueSnackbar('Login Successfully', {
             variant: 'success',

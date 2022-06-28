@@ -2,6 +2,7 @@ import './App.css';
 import { Blog } from './types/types';
 import useGetBlogs from './utils/getBlogs/useGetBlogs';
 import usePostBlog from './utils/postBlogs/usePostBlogs';
+import { SnackbarProvider } from "notistack";
 
 function App() {
   const [res, apiMethod] = usePostBlog({
@@ -18,8 +19,10 @@ function App() {
   if (!data) return <p>Loading...</p>
   return (
     <>
-      <p> {data.title}</p>
-      <button onClick={() => { apiMethod() }} type="button">klkjdf</button>
+      <div>
+        <p> {data.title}</p>
+        <button onClick={() => { apiMethod() }} type="button">klkjdf</button>
+      </div>
     </>
   )
 }

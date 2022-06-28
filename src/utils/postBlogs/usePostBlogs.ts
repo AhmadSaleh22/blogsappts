@@ -1,8 +1,10 @@
 import { useCallback, useState } from "react";
 import { PostRequest } from "../../types/types";
+import { useSnackbar } from 'notistack'
 
 const usePostBlog = ({ url, headers, payload }: PostRequest) => {
     const [res, setRes] = useState({ data: null, error: null, isLoading: false });
+    const { enqueueSnackbar } = useSnackbar()
     // You POST method here
     const callAPI = useCallback(() => {
         setRes(prevState => ({ ...prevState, isLoading: true }));
@@ -14,7 +16,11 @@ const usePostBlog = ({ url, headers, payload }: PostRequest) => {
             },
         })
             .then((response) => response.json())
-            .then((json) => console.log(json));
+            .then(() => {
+                enqueueSnackbar('Successfully posted the data', {
+                    variant: 'success',
+                })
+            });
     }, [url, headers, payload])
     return [res, callAPI as any];
 }

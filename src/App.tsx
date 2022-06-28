@@ -1,6 +1,6 @@
 import './App.css';
 import { Blog } from './types/types';
-import useGetBlogs from './utils/getPosts/useGetBlogs';
+import useGetBlogs from './utils/getBlogs/useGetBlogs';
 import usePostBlog from './utils/postBlogs/usePostBlogs';
 
 function App() {

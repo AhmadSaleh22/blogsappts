@@ -15,9 +15,10 @@ export interface Blog {
 }
 
 export interface PostBlog {
-    title: string;
-    body: string;
-    userId: number;
+    title?: string;
+    body?: string;
+    id?: number;
+    userId?: number;
 }
 
 export interface PostRequest {

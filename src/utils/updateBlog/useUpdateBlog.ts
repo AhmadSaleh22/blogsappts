@@ -2,14 +2,14 @@ import { useSnackbar } from "notistack";
 import { useCallback, useState } from "react";
 import { PostRequest } from "../../types/types";
 
-const usePostBlog = ({ url, headers, payload }: PostRequest, id: number) => {
+const useUpdateBlog = ({ url, headers, payload }: PostRequest) => {
     const [res, setRes] = useState({ data: null, error: null, isLoading: false });
     const { enqueueSnackbar } = useSnackbar()
 
     // You POST method here
     const callAPI = useCallback(() => {
         setRes(prevState => ({ ...prevState, isLoading: true }));
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+        fetch(`${url}`, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: {
@@ -26,4 +26,4 @@ const usePostBlog = ({ url, headers, payload }: PostRequest, id: number) => {
     return [res, callAPI as any];
 }
 
-export default usePostBlog;
+export default useUpdateBlog;

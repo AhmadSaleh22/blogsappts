@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import './Style.css'
-import { createContext, useEffect, useState } from "react"
+import React, { createContext, useEffect, useState } from "react"
 import usePostBlog from "../../utils/postBlogs/usePostBlogs";
 import useGetBlogs from '../../utils/getBlogs/useGetBlogs';
 import { Blog } from '../../types/types';
@@ -11,8 +10,9 @@ const UserContext = createContext<Blog[]>([]);
 const Home = () => {
     const [title, setTitle] = useState<String>("");
     const [body, setBody] = useState<String>("");
-    const [timeLine, setTimeLine] = useState<Blog[] | undefined>([])
+    const [timeLine, setTimeLine] = useState<Blog[]>([])
 
+    console.log(timeLine[0]);
     const [res, apiMethod] = usePostBlog({
         url: '', headers: { ContentType: 'text/plain' }, payload: {
             title: title as string,
@@ -20,9 +20,16 @@ const Home = () => {
             userId: 1,
         }
     });
+
     const handlePost = (e: any): void => {
         e.preventDefault();
         apiMethod()
+        console.log(title, body)
+        timeLine!.unshift({
+            title: title as string,
+            body: body as string,
+            userId: 1,
+        })
         setTitle("")
         setBody("")
     }
@@ -32,21 +39,25 @@ const Home = () => {
     );
 
     function handleRemove(id: number) {
+        console.log(timeLine?.length);
         const newTimeLine = timeLine!.filter((item) => item.id !== id);
-
         setTimeLine(newTimeLine);
     }
 
+    useEffect(() => {
+        console.log(timeLine?.length);
+    }, [timeLine])
 
     useEffect(() => {
         console.log("data", data);
-        setTimeLine(data)
+        setTimeLine(data || [])
     }, [data])
 
 
 
+
     if (error) return <p>There is an error.</p>
-    if (timeLine === undefined) return <p>Loading...</p>
+    if (timeLine === undefined && data === undefined) return <p>Loading...</p>
 
     return (
         <UserContext.Provider value={timeLine}>
@@ -72,9 +83,11 @@ const Home = () => {
             <hr />
             {
                 timeLine?.map((datas) => (
-                    <>
-                        <BlogItem key={datas!.id} title={datas.title} body={datas.body} onRemove={() => handleRemove(parseInt(datas!.id as string))} id={datas!.id!.toString()} />
-                    </>
+                    <BlogItem key={datas?.id} blog={{
+                        title: datas?.title,
+                        body: datas?.body,
+                        id: datas?.id?.toString()
+                    }} onRemove={() => handleRemove(parseInt(datas?.id as string))} />
                 )
                 )
             }

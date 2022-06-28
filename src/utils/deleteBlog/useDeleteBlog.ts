@@ -10,12 +10,11 @@ const useDeleteBlog = ({ url, headers, payload }: PostRequest, id: string) => {
         setRes(prevState => ({ ...prevState, isLoading: true }));
         fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
             method: 'DELETE',
-        })
-            .then(() => {
+        }).then(() => {
                 enqueueSnackbar('Important: resource will not be really Delete on the server but it will be faked as if.', {
                     variant: 'success',
                 })
-            });
+        });
     }, [url, headers, payload])
     return [res, callAPI as any];
 }

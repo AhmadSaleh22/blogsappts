@@ -21,7 +21,7 @@ const usePostBlog = ({ url, headers, payload }: PostRequest) => {
                     variant: 'success',
                 })
             });
-    }, [url, headers, payload])
+    }, [payload, enqueueSnackbar])
     return [res, callAPI as any];
 }
 

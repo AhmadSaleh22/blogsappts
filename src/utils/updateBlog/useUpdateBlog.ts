@@ -2,7 +2,7 @@ import { useSnackbar } from "notistack";
 import { useCallback, useState } from "react";
 import { PostRequest } from "../../types/types";
 
-const useUpdateBlog = ({ url, headers, payload }: PostRequest) => {
+const useUpdateBlog = ({ url, payload }: PostRequest) => {
     const [res, setRes] = useState({ data: null, error: null, isLoading: false });
     const { enqueueSnackbar } = useSnackbar()
 
@@ -18,11 +18,11 @@ const useUpdateBlog = ({ url, headers, payload }: PostRequest) => {
         })
             .then((response) => response.json())
             .then(() => {
-                enqueueSnackbar('Important: resource will not be really updated on the server but it will be faked as if.', {
+                enqueueSnackbar('Updating done', {
                     variant: 'success',
                 })
             });
-    }, [url, headers, payload])
+    }, [url, payload, enqueueSnackbar])
     return [res, callAPI as any];
 }
 

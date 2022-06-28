@@ -1,11 +1,8 @@
 import { Button, Card } from '@material-ui/core';
 import { CardActionArea, CardActions, CardContent, Typography } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Blog } from '../../types/types'
 import useDeleteBlog from '../../utils/deleteBlog/useDeleteBlog';
-import useUpdateBlog from '../../utils/updateBlog/useUpdateBlog';
-import './style.css';
 
 
 const BlogItem = ({ blog, onRemove }: { blog: Blog, onRemove: (id: number) => any }) => {
@@ -20,7 +17,6 @@ const BlogItem = ({ blog, onRemove }: { blog: Blog, onRemove: (id: number) => an
         setBlogData({ ...blog, [e.target.name]: e.target.value });
     }
 
-    const navigate = useNavigate();
 
     const [res, apiMethod] = useDeleteBlog({
         url: '', headers: { ContentType: 'text/plain' }, payload: {
@@ -34,17 +30,6 @@ const BlogItem = ({ blog, onRemove }: { blog: Blog, onRemove: (id: number) => an
         apiMethod();
         onRemove(parseInt(blog.id as string));
     }
-
-    // console.log("dlkdfkldfkl=======", blog.id);
-
-    const [response, updateBlogMethod] = useUpdateBlog({
-        url: `https://jsonplaceholder.typicode.com/posts/${blog?.id?.toString()}`, headers: { ContentType: 'text/plain' }, payload: {
-            title: blogData?.title as string,
-            body: blogData?.body as string,
-            id: blog?.id as number,
-        }
-    });
-
 
     return (
         <Card style={{ width: '80%', margin: "20px auto", textAlign: "center" }}>

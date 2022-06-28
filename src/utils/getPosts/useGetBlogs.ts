@@ -4,7 +4,7 @@ interface State<T> {
     data?: T
     error?: Error
 }
-
+// The cache for saving the state of url and caching it.
 type Cache<T> = { [url: string]: T }
 
 // discriminated union type

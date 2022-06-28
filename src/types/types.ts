@@ -9,3 +9,16 @@ export interface Blog {
     body: string;
     userId: number;
 }
+
+export interface PostBlog {
+    title: string;
+    body: string;
+    userId: number;
+}
+
+export interface PostRequest {
+    url?: string;
+    headers?: any;
+    payload?: PostBlog;
+}
+

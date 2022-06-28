@@ -1,5 +1,5 @@
 import './Style.css'
-import React, { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import usePostBlog from "../../utils/postBlogs/usePostBlogs";
 import useGetBlogs from '../../utils/getBlogs/useGetBlogs';
 import { Blog } from '../../types/types';
@@ -39,17 +39,14 @@ const Home = () => {
     );
 
     function handleRemove(id: number) {
-        console.log(timeLine?.length);
         const newTimeLine = timeLine!.filter((item) => item.id !== id);
         setTimeLine(newTimeLine);
     }
 
     useEffect(() => {
-        console.log(timeLine?.length);
     }, [timeLine])
 
     useEffect(() => {
-        console.log("data", data);
         setTimeLine(data || [])
     }, [data])
 

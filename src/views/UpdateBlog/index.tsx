@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { Blog } from '../../types/types';
 import useGetBlogs from '../../utils/getBlogs/useGetBlogs';
 

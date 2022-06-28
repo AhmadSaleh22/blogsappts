@@ -1,6 +1,9 @@
 export interface User {
-    name: string;
+    email: string;
     password: string;
+    isButtonDisabled: boolean;
+    helperText: string;
+    isError: boolean;
 }
 
 export interface Blog {
@@ -22,3 +25,10 @@ export interface PostRequest {
     payload?: PostBlog;
 }
 
+// export interface Login 
+export type Action = { type: 'setUsername', payload: string }
+    | { type: 'setPassword', payload: string }
+    | { type: 'setIsButtonDisabled', payload: boolean }
+    | { type: 'loginSuccess', payload: string }
+    | { type: 'loginFailed', payload: string }
+    | { type: 'setIsError', payload: boolean };

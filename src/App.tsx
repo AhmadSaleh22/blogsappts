@@ -2,7 +2,9 @@ import './App.css';
 import { Blog } from './types/types';
 import useGetBlogs from './utils/getBlogs/useGetBlogs';
 import usePostBlog from './utils/postBlogs/usePostBlogs';
-import { SnackbarProvider } from "notistack";
+import { AllRoutes } from './utils/Routes/AllRoutes';
+import Login from './components/LoginForm';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [res, apiMethod] = usePostBlog({
@@ -18,12 +20,17 @@ function App() {
   if (error) return <p>There is an error.</p>
   if (!data) return <p>Loading...</p>
   return (
-    <>
-      <div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Login />} />
+      </Routes>
+      {/* <AllRoutes /> */}
+      {/* <Login /> */}
+      {/* <div>
         <p> {data.title}</p>
         <button onClick={() => { apiMethod() }} type="button">klkjdf</button>
-      </div>
-    </>
+      </div> */}
+    </BrowserRouter>
   )
 }
 

@@ -18,7 +18,7 @@ const usePostBlog = ({ url, headers, payload }: PostRequest, id: number) => {
         })
             .then((response) => response.json())
             .then(() => {
-                enqueueSnackbar('Successfully updating the data', {
+                enqueueSnackbar('Important: resource will not be really updated on the server but it will be faked as if.', {
                     variant: 'success',
                 })
             });

@@ -7,10 +7,11 @@ export interface User {
 }
 
 export interface Blog {
-    id: number;
-    title: string;
-    body: string;
-    userId: number;
+    id?: number | string;
+    title?: string;
+    body?: string;
+    userId?: number;
+    onRemove?: (id: number) => void;
 }
 
 export interface PostBlog {

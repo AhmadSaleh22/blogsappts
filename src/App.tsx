@@ -8,18 +8,18 @@ import Home from './views/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [res, apiMethod] = usePostBlog({
-    url: '', headers: { ContentType: 'text/plain' }, payload: {
-      title: 'foo',
-      body: 'bar',
-      userId: 1,
-    }
-  });
-  const { data, error } = useGetBlogs<Blog>(
-    "https://jsonplaceholder.typicode.com/posts/1"
-  );
-  if (error) return <p>There is an error.</p>
-  if (!data) return <p>Loading...</p>
+  // const [res, apiMethod] = usePostBlog({
+  //   url: '', headers: { ContentType: 'text/plain' }, payload: {
+  //     title: 'foo',
+  //     body: 'bar',
+  //     userId: 1,
+  //   }
+  // });
+  // const { data, error } = useGetBlogs<Blog>(
+  //   "https://jsonplaceholder.typicode.com/posts"
+  // );
+  // if (error) return <p>There is an error.</p>
+  // if (!data) return <p>Loading...</p>
   return (
     <BrowserRouter>
       <Routes>

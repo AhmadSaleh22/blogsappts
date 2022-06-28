@@ -17,7 +17,7 @@ const usePostBlog = ({ url, headers, payload }: PostRequest) => {
         })
             .then((response) => response.json())
             .then(() => {
-                enqueueSnackbar('Successfully posted the data', {
+                enqueueSnackbar('Important: resource will not be really posted on the server but it will be faked as if.', {
                     variant: 'success',
                 })
             });

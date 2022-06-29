@@ -13,7 +13,6 @@ const Home = () => {
     const [body, setBody] = useState<String>("");
     const [timeLine, setTimeLine] = useState<Blog[]>([])
 
-    console.log(timeLine[0]);
     const [res, apiMethod] = usePostBlog({
         url: '', headers: { ContentType: 'text/plain' }, payload: {
             title: title as string,
@@ -25,7 +24,6 @@ const Home = () => {
     const handlePost = (e: any): void => {
         e.preventDefault();
         apiMethod()
-        console.log(title, body)
         timeLine!.unshift({
             title: title as string,
             body: body as string,

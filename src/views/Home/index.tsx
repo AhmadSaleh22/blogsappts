@@ -4,6 +4,7 @@ import usePostBlog from "../../utils/postBlogs/usePostBlogs";
 import useGetBlogs from '../../utils/getBlogs/useGetBlogs';
 import { Blog } from '../../types/types';
 import BlogItem from '../../components/Blog';
+import { TextField } from '@material-ui/core';
 
 const UserContext = createContext<Blog[]>([]);
 
@@ -61,18 +62,23 @@ const Home = () => {
             <div className="create">
                 <h2>Add a Blog</h2>
                 <form onSubmit={handlePost} className="form">
-                    <label>Blog Title</label>
-                    <input
+                    <TextField
+                        style={{ width: "80%", margin: "auto", textAlign: "center" }}
+                        id="outlined-basic"
+                        variant="outlined"
+                        label="Blog Title"
                         type="text"
                         required
                         // value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                    <label>Blog Body:</label>
-                    <textarea
+                    <TextField
+                        multiline
                         required
+                        label="Blog Body"
                         // value={body}
                         onChange={(e) => setBody(e.target.value)}
+                        style={{ width: "80%", margin: "auto", textAlign: "center" }}
                     />
                     <button className="button">Adding Blog</button>
                 </form>

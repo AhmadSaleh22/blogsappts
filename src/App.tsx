@@ -2,7 +2,7 @@ import './App.css';
 import Login from './components/LoginForm';
 import Home from './views/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { UpdateBlog } from './views/UpdateBlog';
+import { BlogPage } from './views/BlogPage';
 import { SnackbarProvider } from 'notistack';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route index element={<Login />} />
           <Route path="Home" element={<Home />} />
-          <Route path="Blogs/:id" element={<UpdateBlog />} />
+          <Route path="Blogs/:id" element={<BlogPage />} />
         </Routes>
       </BrowserRouter>
     </SnackbarProvider>
